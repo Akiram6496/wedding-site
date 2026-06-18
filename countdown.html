@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Countdown Matrimonio</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #2c2c2c;
+}
+
+.container {
+  text-align: center;
+}
+
+h1 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+#countdown {
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.small {
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Mancano al nostro matrimonio</h1>
+  <div id="countdown"></div>
+  <div class="small">22 Aprile 2028</div>
+</div>
+
+<script>
+const weddingDate = new Date("Apr 22, 2028 15:00:00").getTime();
+
+const timer = setInterval(function() {
+
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML =
+    days + "g " + hours + "h " + minutes + "m " + seconds + "s";
+
+  if (distance < 0) {
+    clearInterval(timer);
+    document.getElementById("countdown").innerHTML = "È il grande giorno ❤️";
+  }
+
+}, 1000);
+</script>
+
+</body>
+</html>
